@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_habilidades",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_habilidades",
+  "parent":{
+    "name":"HABILIDADE",
+    "path":"folders/Scripts/PLAYER-SCRIPTS/HABILIDADES-PLAYER/HABILIDADE.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

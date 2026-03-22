@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_construtorPlayer",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_construtorPlayer",
+  "parent":{
+    "name":"MAQUINAS-ESTADO",
+    "path":"folders/Scripts/MAQUINAS-ESTADO.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

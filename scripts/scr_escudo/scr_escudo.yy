@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_escudo",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_escudo",
+  "parent":{
+    "name":"ESCUDOS",
+    "path":"folders/Scripts/ESCUDOS.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_contrutorProjeteis",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_contrutorProjeteis",
+  "parent":{
+    "name":"PROJETEIS-SCRIPTS",
+    "path":"folders/Scripts/PLAYER-SCRIPTS/HABILIDADES-PLAYER/PROJETEIS-SCRIPTS.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
