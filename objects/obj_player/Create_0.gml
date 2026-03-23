@@ -4,6 +4,9 @@ image_xscale = 0.2
 image_yscale = image_xscale
 
 habilidade = []
+velh = 0
+velv = 0
+vel = 1
 
 max_vida = 100;
 vida  = max_vida;
@@ -11,11 +14,84 @@ controla_vida = new scr_vida(max_vida)
 
 atirar = noone;
 
+estado_idle = new estado()
+estado_run = new estado()
+estado_habilidade_1 = new estado()
 
+//VARIAVEIS CONTROLE    
+right = noone
+left = noone
+up = noone
+down = noone
+hab_1 = noone
+#endregion
+
+
+#region MAQUINA DE ESTADOS
+#region ESTADO IDLE 
+estado_idle.inicia = function()
+{
+    velh = 0
+    velv = 0
+    image_blend = c_red
+}
+
+estado_idle.roda = function()
+{
+    if (right xor left or down xor up)
+    {
+        troca_estado(estado_run)
+    }
+    
+}
+#endregion
+
+#region ESTADO RUN
+estado_run.inicia = function()
+{
+    image_blend = c_purple
+}
+
+estado_run.roda = function()
+{
+    velh = (right - left) * vel
+    velv = (down - up) * vel
+    
+    if velh == 0 and velv == 0
+    {
+        troca_estado(estado_idle)
+    }
+    
+    if hab_1
+    {
+        troca_estado(estado_habilidade_1)
+    }
+}
+#endregion
+
+#region HABILIDADE 1
+estado_habilidade_1.inicia = function()
+{
+    
+    image_blend = c_green
+}
+
+estado_habilidade_1.roda = function()
+{
+    //velh = 0
+    //velv = 0
+    
+    if !hab_1
+    {
+        troca_estado(estado_idle)
+    }
+}
+#endregion
+#endregion
 
 global.projetil = global.bala_comum
 
-#region BUFFS
+#region BUFFS VARIAVEIS 
 aplicou_buff = false
 tempo_buff = room_speed * 2
 cronometro_buff = 0
@@ -25,11 +101,15 @@ instancia_buff = room_speed * 2
 cronometro_inst = 0
 #endregion
 
-#endregion
-
-
-
-
+controle = function()
+{
+    left        = keyboard_check(ord("A"))
+    right       = keyboard_check(ord("D"))
+    up          = keyboard_check(ord("W"))
+    down        = keyboard_check(ord("S"))
+    atirar      = mouse_check_button_pressed(mb_left)
+    hab_1       = keyboard_check(ord("O"))
+}
 
 #region METODOS
 usando_habilidade_1 = function(balas)
@@ -42,23 +122,11 @@ usando_habilidade_1 = function(balas)
         projetil.direction      =   point_direction(x, y, mouse_x, mouse_y)
         projetil.image_angle    =   projetil.direction;    
         projetil.speed          = 2; 
-        projetil.image_xscale   = 0.2
+        projetil.image_xscale   = 0.05
         projetil.image_yscale   = projetil.image_xscale
         
         
 }
-}
-
-troca_tiro = function()
-{
-    if keyboard_check(vk_right)
-    {
-        global.projetil = global.bala_comum
-    }
-    else if keyboard_check(vk_left)
-    {
-        global.projetil = global.bala_azul
-    }
 }
 
 
@@ -116,9 +184,9 @@ function cria_chamas()
            if _hab.nome == "Chamas"
            {
                 criou_instancia = true
-                var a = instance_create_layer(x, y - 30, "PLAYER", obj_chamas)
-                var b = instance_create_layer(x - 30, y, "PLAYER", obj_chamas2)
-                var c = instance_create_layer(x + 30, y, "PLAYER", obj_chamas3)
+                var a = instance_create_layer(x, y - 10, "PLAYER", obj_chamas)
+                var b = instance_create_layer(x - 10, y, "PLAYER", obj_chamas2)
+                var c = instance_create_layer(x + 10, y, "PLAYER", obj_chamas3)
                 vezes++;
             }
         }
@@ -145,3 +213,10 @@ instancia_coldown = function()
     
 }
 #endregion
+
+
+
+
+
+
+inicia_estado(estado_idle)

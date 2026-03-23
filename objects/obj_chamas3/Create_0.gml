@@ -1,7 +1,11 @@
+image_xscale = 0.5
+image_yscale = image_xscale
 estado_1 = new estado();
 estado_2 = new estado();
 estado_3 = new estado();
 estado_4 = new estado();
+
+tamanho = 10
 
 vel = global.vel_chamas
 
@@ -14,7 +18,7 @@ estado_1.inicia = function()
 
 estado_1.roda = function()
 {
-    if (y >= (obj_level.y + 30))
+    if (y >= (obj_player.y + tamanho))
     {
         troca_estado(estado_2)
     }
@@ -30,7 +34,7 @@ estado_2.inicia = function()
 
 estado_2.roda = function()
 {
-    if (x <= (obj_level.x - 30))
+    if (x <= (obj_player.x - tamanho))
     {
         troca_estado(estado_3)
     }
@@ -46,7 +50,7 @@ estado_3.inicia = function()
 
 estado_3.roda = function()
 {
-    if (y <= (obj_level.y - 30))
+    if (y <= (obj_player.y - tamanho))
     {
         troca_estado(estado_4)
     }
@@ -62,7 +66,7 @@ estado_4.inicia = function()
 
 estado_4.roda = function()
 {
-   if (x >= (obj_level.x + 30))
+   if (x >= (obj_player.x + tamanho))
     {
         troca_estado(estado_1)
     }
