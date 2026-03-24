@@ -1,5 +1,5 @@
 draw_self()
-controla_vida.desenha_vida(x, y - 5, 5, 1, c_orange, c_red,c_white, true);
+controla_vida.desenha_vida(20, 20, 5, 1, c_orange, c_red,c_white, true);
 
 draw_set_font(fnt_infos_personagens)
 //draw_text(20, 20, "Projetil atual: "+global.projetil.nome)

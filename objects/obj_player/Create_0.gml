@@ -1,6 +1,5 @@
 #region LISTAS / VARIAVEIS
-
-image_xscale = 0.2
+image_xscale = 0.5
 image_yscale = image_xscale
 
 habilidade = []
@@ -13,6 +12,8 @@ vida  = max_vida;
 controla_vida = new scr_vida(max_vida)
 
 atirar = noone;
+
+dir = 0;
 
 estado_idle = new estado()
 estado_run = new estado()
@@ -33,11 +34,15 @@ estado_idle.inicia = function()
 {
     velh = 0
     velv = 0
-    image_blend = c_red
+    
+    var _sprite = define_sprite(dir, spr_player_idle_side, spr_player_idle_front, spr_player_idle_back)
+    
+    sprite_index = _sprite
 }
 
 estado_idle.roda = function()
 {
+    
     if (right xor left or down xor up)
     {
         troca_estado(estado_run)
@@ -49,11 +54,29 @@ estado_idle.roda = function()
 #region ESTADO RUN
 estado_run.inicia = function()
 {
-    image_blend = c_purple
+     dir     = (point_direction(0, 0, right - left, down - up) div 90);
+    
+    
+    
+    sprite_index = define_sprite(dir, spr_player_idle_side, spr_player_idle_front, spr_player_idle_back)
+    
+    image_index = 0;
 }
 
 estado_run.roda = function()
 {
+
+    dir    = (point_direction(0, 0, velh, velv) div 90);
+    
+    
+    //Ajustando o lado
+    if velh != 0
+    {
+        image_xscale = sign(velh)
+    }
+
+    sprite_index = define_sprite(dir, spr_player_idle_side, spr_player_idle_front, spr_player_idle_back)
+    
     velh = (right - left) * vel
     velv = (down - up) * vel
     
