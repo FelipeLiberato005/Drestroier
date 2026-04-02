@@ -4,7 +4,7 @@ depth = -y
 controle()
 
 
-usando_habilidade_1(global.projetil)
+
 
 //coldown_buff()
 //aplica_buff()

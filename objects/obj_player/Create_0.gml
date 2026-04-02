@@ -1,6 +1,5 @@
 #region LISTAS / VARIAVEIS
-image_xscale = 0.5
-image_yscale = image_xscale
+
 
 habilidade = []
 velh = 0
@@ -11,13 +10,19 @@ max_vida = 100;
 vida  = max_vida;
 controla_vida = new scr_vida(max_vida)
 
+dano_base = 15
+dano_atual = dano_base
+
 atirar = noone;
 
 dir = 0;
 
+lista_colisoes = [obj_enemy_test, obj_colisor]
+
 estado_idle = new estado()
 estado_run = new estado()
 estado_habilidade_1 = new estado()
+estado_atack = new estado()
 
 //VARIAVEIS CONTROLE    
 right = noone
@@ -25,6 +30,7 @@ left = noone
 up = noone
 down = noone
 hab_1 = noone
+atack = noone
 #endregion
 
 
@@ -35,30 +41,33 @@ estado_idle.inicia = function()
     velh = 0
     velv = 0
     
-    var _sprite = define_sprite(dir, spr_player_idle_side, spr_player_idle_front, spr_player_idle_back)
+    var _sprite = define_sprite(dir, spr_pmago_idle_side, spr_pmago_idle_front, spr_pmago_idle_back)
     
     sprite_index = _sprite
 }
 
 estado_idle.roda = function()
 {
+    dir     = (point_direction(0, 0, right - left, down - up) div 90);
     
     if (right xor left or down xor up)
     {
         troca_estado(estado_run)
     }
     
+    if atack
+    {
+        troca_estado(estado_atack)
+    }
 }
 #endregion
 
 #region ESTADO RUN
 estado_run.inicia = function()
 {
-     dir     = (point_direction(0, 0, right - left, down - up) div 90);
+     
     
-    
-    
-    sprite_index = define_sprite(dir, spr_player_idle_side, spr_player_idle_front, spr_player_idle_back)
+    sprite_index = define_sprite(dir, spr_mago_run_side, spr_mago_run_front, spr_mago_run_back)
     
     image_index = 0;
 }
@@ -75,7 +84,7 @@ estado_run.roda = function()
         image_xscale = sign(velh)
     }
 
-    sprite_index = define_sprite(dir, spr_player_idle_side, spr_player_idle_front, spr_player_idle_back)
+    sprite_index = define_sprite(dir, spr_mago_run_side, spr_mago_run_front, spr_mago_run_back)
     
     velh = (right - left) * vel
     velv = (down - up) * vel
@@ -88,6 +97,54 @@ estado_run.roda = function()
     if hab_1
     {
         troca_estado(estado_habilidade_1)
+    }
+    
+    if atack
+    {
+        troca_estado(estado_atack)
+    }
+}
+#endregion
+
+#region ESTADO ATACK
+estado_atack.inicia = function()
+{
+     dir     = (point_direction(0, 0, right - left, down - up) div 90);
+    
+     sprite_index = define_sprite(dir, spr_mago_atack_side, spr_mago_atack_front, spr_mago_atack_back)
+    
+    if sprite_index == spr_mago_atack_front
+    {
+        instance_create_layer(x - 25, y - 10, "PLAYER" ,obj_hitbox)    
+        
+        var empurra = instance_place(x, y, obj_enemy_test)
+        if empurra
+        {
+            with (obj_enemy_test) {
+        	var _y = lengthdir_y(y, 5)
+            y -= _y
+            
+        }    
+        }
+        
+    }
+    
+    
+     image_index = 0;
+}
+
+estado_atack.roda = function()
+{
+    
+    velh = 0
+    velv = 0
+    //Ajustando o lado
+     
+    
+    
+    if image_index >= image_number - 0.2
+    {
+        troca_estado(estado_idle)
     }
 }
 #endregion
@@ -112,7 +169,6 @@ estado_habilidade_1.roda = function()
 #endregion
 #endregion
 
-global.projetil = global.bala_comum
 
 #region BUFFS VARIAVEIS 
 aplicou_buff = false
@@ -130,7 +186,7 @@ controle = function()
     right       = keyboard_check(ord("D"))
     up          = keyboard_check(ord("W"))
     down        = keyboard_check(ord("S"))
-    atirar      = mouse_check_button_pressed(mb_left)
+    atack       = mouse_check_button_pressed(mb_left)
     hab_1       = keyboard_check(ord("O"))
 }
 

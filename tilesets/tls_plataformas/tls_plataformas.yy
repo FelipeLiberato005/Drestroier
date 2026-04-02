@@ -2,8 +2,7 @@
   "$GMTileSet":"v1",
   "%Name":"tls_plataformas",
   "autoTileSets":[
-    {"$GMAutoTileSet":"","%Name":"plataform_chao","closed_edge":false,"name":"plataform_chao","resourceType":"GMAutoTileSet","resourceVersion":"2.0","tiles":[165,198,196,197,134,166,0,137,132,0,164,138,133,169,170,73,],},
-    {"$GMAutoTileSet":"","%Name":"plataforma_chao2","closed_edge":false,"name":"plataforma_chao2","resourceType":"GMAutoTileSet","resourceVersion":"2.0","tiles":[165,137,138,197,169,166,0,198,170,0,164,196,133,134,132,265,],},
+    {"$GMAutoTileSet":"","%Name":"dddd","closed_edge":false,"name":"dddd","resourceType":"GMAutoTileSet","resourceVersion":"2.0","tiles":[165,170,169,133,138,164,0,132,137,0,166,134,197,196,198,399,],},
   ],
   "macroPageTiles":{
     "SerialiseHeight":0,

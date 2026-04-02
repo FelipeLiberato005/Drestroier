@@ -32,13 +32,10 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_player_idle_front",
-    "path":"sprites/spr_player_idle_front/spr_player_idle_front.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":{
-    "name":"spr_player_idle_front",
-    "path":"sprites/spr_player_idle_front/spr_player_idle_front.yy",
+    "name":"spr_pmago_idle_front",
+    "path":"sprites/spr_pmago_idle_front/spr_pmago_idle_front.yy",
   },
   "visible":true,
 }
