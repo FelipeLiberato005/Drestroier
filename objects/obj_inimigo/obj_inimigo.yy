@@ -31,10 +31,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_inimigo_teste",
-    "path":"sprites/spr_inimigo_teste/spr_inimigo_teste.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

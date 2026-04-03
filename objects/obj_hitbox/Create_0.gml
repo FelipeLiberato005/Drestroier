@@ -11,8 +11,12 @@ if(bati > 0)
 			
 				ds_list_add(hitbox_list,target)
 				with(target){
-				
-                    vida_atual -= obj_player.dano_atual					
+				    
+                    if target.imune == false{
+                        vida_atual -= obj_player.dano_atual	
+                        target.imune = true;
+                    }
+                    		
 				}
 			}
 			

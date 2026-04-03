@@ -1,19 +1,18 @@
 {
   "$GMObject":"",
-  "%Name":"obj_hitbox",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":12,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"obj_hitbox_back",
+  "eventList":[],
   "managed":true,
-  "name":"obj_hitbox",
+  "name":"obj_hitbox_back",
   "overriddenProperties":[],
   "parent":{
     "name":"ESPADA-PADRAO",
     "path":"folders/Objects/PLAYER-OBJECTS/ESPADAS-PLAYER/ESPADA-PADRAO.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_hitbox",
+    "path":"objects/obj_hitbox/obj_hitbox.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,
@@ -32,8 +31,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_hit",
-    "path":"sprites/spr_hit/spr_hit.yy",
+    "name":"spr_hit_back",
+    "path":"sprites/spr_hit_back/spr_hit_back.yy",
   },
   "spriteMaskId":null,
   "visible":true,

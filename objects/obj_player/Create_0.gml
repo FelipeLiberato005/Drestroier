@@ -117,17 +117,22 @@ estado_atack.inicia = function()
     {
         instance_create_layer(x - 25, y - 10, "PLAYER" ,obj_hitbox)    
         
-        var empurra = instance_place(x, y, obj_enemy_test)
-        if empurra
-        {
-            with (obj_enemy_test) {
-        	var _y = lengthdir_y(y, 5)
-            y -= _y
-            
-        }    
-        }
+    }    
+    else if sprite_index == spr_mago_atack_back
+    {
+        instance_create_layer(x - 25, bbox_top - 25, "PLAYER" , obj_hitbox_back)    
+    }    
+    else if sprite_index == spr_mago_atack_side and velh > 0
+    {
         
+        instance_create_layer(x + 2, y - 12 , "PLAYER" , obj_hitbox_side_right)  
     }
+    else if sprite_index == spr_mago_atack_side and velh < 0
+    {
+        instance_create_layer(x - 24, y - 12 , "PLAYER" , obj_hitbox_side_left)  
+    }
+        
+    
     
     
      image_index = 0;
@@ -180,6 +185,10 @@ instancia_buff = room_speed * 2
 cronometro_inst = 0
 #endregion
 
+
+
+#region METODOS
+
 controle = function()
 {
     left        = keyboard_check(ord("A"))
@@ -189,25 +198,6 @@ controle = function()
     atack       = mouse_check_button_pressed(mb_left)
     hab_1       = keyboard_check(ord("O"))
 }
-
-#region METODOS
-usando_habilidade_1 = function(balas)
-{
-    var info = global.player[0]
-    
-    if atirar
-    {
-        var projetil = instance_create_layer(x, y, "PROJETIL", balas.instancia)     
-        projetil.direction      =   point_direction(x, y, mouse_x, mouse_y)
-        projetil.image_angle    =   projetil.direction;    
-        projetil.speed          = 2; 
-        projetil.image_xscale   = 0.05
-        projetil.image_yscale   = projetil.image_xscale
-        
-        
-}
-}
-
 
 cria_buff = function(_nome, _valor)
 {
@@ -272,25 +262,6 @@ function cria_chamas()
     }
 }
 
-instancia_coldown = function()
-{
-    
-     if criou_instancia == true
-    {
-        cronometro_inst++;
-        
-        if cronometro_inst >= instancia_buff
-        {
-            criou_instancia = false
-            cronometro_inst = 0
-        }
-    }
-    else
-    {
-        cronometro_buff = 0
-    }
-    
-}
 #endregion
 
 

@@ -1,1 +1,1 @@
-draw_text(x, y, vida_atual)
+draw_text(x, y + _y, vida_atual)
