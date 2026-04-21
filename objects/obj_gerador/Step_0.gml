@@ -1,3 +1,0 @@
-gerar_inimigos()
-
-

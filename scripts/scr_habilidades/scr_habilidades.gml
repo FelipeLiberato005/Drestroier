@@ -14,10 +14,5 @@ function cria_habilidade(
 }
 
 
-global.chamas = new cria_habilidade(
-    "Chamas",
-    obj_chamas,
-    5
-)
 
 

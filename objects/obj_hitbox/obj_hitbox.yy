@@ -1,11 +1,7 @@
 {
   "$GMObject":"",
   "%Name":"obj_hitbox",
-  "eventList":[
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":12,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "eventList":[],
   "managed":true,
   "name":"obj_hitbox",
   "overriddenProperties":[],
@@ -13,7 +9,10 @@
     "name":"ESPADA-PADRAO",
     "path":"folders/Objects/PLAYER-OBJECTS/ESPADAS-PLAYER/ESPADA-PADRAO.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_hitbox_default",
+    "path":"objects/obj_hitbox_default/obj_hitbox_default.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

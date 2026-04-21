@@ -28,14 +28,9 @@ function cria_personagem (
 #endregion
 
 #region PLAYER
-var player = new cria_personagem(
-    obj_player,
-    obj_projetil_azul,
-    100
-)
 
 #endregion
 
 #endregion
 
-global.player = [player]
+

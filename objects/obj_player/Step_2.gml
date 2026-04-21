@@ -1,1 +1,1 @@
-move_and_collide(velh, velv, lista_colisoes, 12)
+corrigindo_mov()

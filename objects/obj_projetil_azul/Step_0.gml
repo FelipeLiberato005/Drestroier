@@ -1,4 +1,0 @@
-
-
-
-limite_room()

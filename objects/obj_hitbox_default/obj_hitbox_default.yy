@@ -1,16 +1,17 @@
 {
   "$GMObject":"",
-  "%Name":"obj_chamas",
+  "%Name":"obj_hitbox_default",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":12,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_chamas",
+  "name":"obj_hitbox_default",
   "overriddenProperties":[],
   "parent":{
-    "name":"HABILIDADE(CHAMAS)",
-    "path":"folders/Objects/PLAYER-OBJECTS/HABILIDADE-PLAYER-OBJECTS/HABILIDADE(CHAMAS).yy",
+    "name":"ESPADA-PADRAO",
+    "path":"folders/Objects/PLAYER-OBJECTS/ESPADAS-PLAYER/ESPADA-PADRAO.yy",
   },
   "parentObjectId":null,
   "persistent":false,
@@ -30,10 +31,7 @@
   "resourceType":"GMObject",
   "resourceVersion":"2.0",
   "solid":false,
-  "spriteId":{
-    "name":"spr_chamas",
-    "path":"sprites/spr_chamas/spr_chamas.yy",
-  },
+  "spriteId":null,
   "spriteMaskId":null,
   "visible":true,
 }

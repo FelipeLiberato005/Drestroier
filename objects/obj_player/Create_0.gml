@@ -1,40 +1,47 @@
 #region LISTAS / VARIAVEIS
 
 
-habilidade = []
-velh = 0
-velv = 0
-vel = 1
+habilidade                      = []
+velh                            = 0
+velv                            = 0
+vel                             = 1
 
-max_vida = 100;
-vida  = max_vida;
-controla_vida = new scr_vida(max_vida)
+max_vida                        = 100;
+vida                            = max_vida;
+controla_vida                   = new scr_vida(max_vida)
 
-dano_base = 15
-dano_atual = dano_base
+dano_base                       = 15
+dano_atual                      = dano_base
 
-atirar = noone;
+atirar                          = noone;
 
-dir = 0;
+dir                             = 0;
 
-lista_colisoes = [obj_enemy_test, obj_colisor]
+lista_colisoes                  = [obj_colisor]
 
-estado_idle = new estado()
-estado_run = new estado()
-estado_habilidade_1 = new estado()
-estado_atack = new estado()
+estado_idle                     = new estado()
+estado_run                      = new estado()
+estado_habilidade_1             = new estado()
+estado_atack                    = new estado()
 
 //VARIAVEIS CONTROLE    
-right = noone
-left = noone
-up = noone
-down = noone
-hab_1 = noone
-atack = noone
+right                   = noone
+left                    = noone
+up                      = noone
+down                    = noone
+hab_1                   = noone
+atack                   = noone
+
+
+ativa_ataque            = room_speed * 1;
+recarga_ataque          = 0
+atacou                  = false
 #endregion
 
 
 #region MAQUINA DE ESTADOS
+
+
 #region ESTADO IDLE 
 estado_idle.inicia = function()
 {
@@ -55,12 +62,17 @@ estado_idle.roda = function()
         troca_estado(estado_run)
     }
     
-    if atack
+    if atack and atacou == false
     {
         troca_estado(estado_atack)
     }
 }
 #endregion
+
+
+
+
+
 
 #region ESTADO RUN
 estado_run.inicia = function()
@@ -99,12 +111,16 @@ estado_run.roda = function()
         troca_estado(estado_habilidade_1)
     }
     
-    if atack
+    if atack and atacou == false
     {
         troca_estado(estado_atack)
     }
 }
 #endregion
+
+
+
+
 
 #region ESTADO ATACK
 estado_atack.inicia = function()
@@ -115,21 +131,25 @@ estado_atack.inicia = function()
     
     if sprite_index == spr_mago_atack_front
     {
-        instance_create_layer(x - 25, y - 10, "PLAYER" ,obj_hitbox)    
+        instance_create_layer(x - 25, y - 10, "PLAYER" ,obj_hitbox) 
+        atacou = true;   
         
     }    
     else if sprite_index == spr_mago_atack_back
     {
-        instance_create_layer(x - 25, bbox_top - 25, "PLAYER" , obj_hitbox_back)    
+        instance_create_layer(x - 25, bbox_top - 25, "PLAYER" , obj_hitbox_back)
+        atacou = true;    
     }    
     else if sprite_index == spr_mago_atack_side and velh > 0
     {
         
         instance_create_layer(x + 2, y - 12 , "PLAYER" , obj_hitbox_side_right)  
+        atacou = true;
     }
     else if sprite_index == spr_mago_atack_side and velh < 0
     {
         instance_create_layer(x - 24, y - 12 , "PLAYER" , obj_hitbox_side_left)  
+        atacou = true;
     }
         
     
@@ -154,6 +174,11 @@ estado_atack.roda = function()
 }
 #endregion
 
+
+
+
+
+
 #region HABILIDADE 1
 estado_habilidade_1.inicia = function()
 {
@@ -172,7 +197,9 @@ estado_habilidade_1.roda = function()
     }
 }
 #endregion
-#endregion
+
+
+
 
 
 #region BUFFS VARIAVEIS 
@@ -184,6 +211,8 @@ criou_instancia = false
 instancia_buff = room_speed * 2
 cronometro_inst = 0
 #endregion
+
+
 
 
 
@@ -261,6 +290,96 @@ function cria_chamas()
         }
     }
 }
+
+
+corrigindo_mov = function()
+{
+    var h = right - left
+    var v = down - up
+
+// normaliza o vetor
+var len = point_distance(0, 0, h, v);
+
+if (len > 0)
+{
+	h /= len;
+	v /= len;
+}
+//
+    //var mx = h * vel;
+    //var my = v * vel;
+//
+//// move no X primeiro
+//move_and_collide(mx, 0, lista_colisoes);
+//
+//// depois no Y
+//move_and_collide(0, my, lista_colisoes);
+move_and_collide(h * vel, v * vel, lista_colisoes, 12)
+}
+
+coldown_ataque = function()
+{
+    if atacou == true
+    {
+        recarga_ataque++;
+        
+        if recarga_ataque >= ativa_ataque
+        {
+            atacou = false
+            recarga_ataque = 0;
+        }
+    }
+}
+
+#region Debug
+
+view_player = noone;
+
+roda_debug = function()
+{
+    //if (!global.debug) return;
+        
+    show_debug_overlay(1);
+    
+    view_player = dbg_view("View player", 1, 40, 100, 300, 400)
+    
+    dbg_watch(ref_create(self, "velv"), "velocidade Vertical")
+    
+    dbg_watch(ref_create(self, "velh"), "Velocidade Horizontal")
+    
+    dbg_slider(ref_create(self, "vel"), 0, 10, "Velocidade", 0.5)
+    
+}
+
+
+
+ativa_debug = function()
+{
+    //if !DEBUG_MODE return;
+    
+    if (keyboard_check_pressed(vk_tab))
+    {
+        global.debug = !global.debug;
+        
+            //Se o jogo estiver no modo debug, vai rodar o debug
+            if(global.debug)
+        {
+            roda_debug()
+        } 
+        else 
+        {
+            show_debug_overlay(0)
+            
+            if(dbg_view_exists(view_player))
+            {
+                dbg_view_delete(view_player)
+            }
+        }
+    }
+}
+
+
+#endregion
 
 #endregion
 

@@ -10,8 +10,8 @@
     "path":"folders/Objects/PLAYER-OBJECTS/ESPADAS-PLAYER/ESPADA-PADRAO.yy",
   },
   "parentObjectId":{
-    "name":"obj_hitbox",
-    "path":"objects/obj_hitbox/obj_hitbox.yy",
+    "name":"obj_hitbox_default",
+    "path":"objects/obj_hitbox_default/obj_hitbox_default.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,
