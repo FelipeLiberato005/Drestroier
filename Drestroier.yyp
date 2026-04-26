@@ -61,6 +61,7 @@
     {"id":{"name":"fnt_introducao","path":"fonts/fnt_introducao/fnt_introducao.yy",},},
     {"id":{"name":"obj_colisor","path":"objects/obj_colisor/obj_colisor.yy",},},
     {"id":{"name":"obj_cont_dano","path":"objects/obj_cont_dano/obj_cont_dano.yy",},},
+    {"id":{"name":"obj_efeitodash","path":"objects/obj_efeitodash/obj_efeitodash.yy",},},
     {"id":{"name":"obj_enemy_test","path":"objects/obj_enemy_test/obj_enemy_test.yy",},},
     {"id":{"name":"obj_hitbox_back","path":"objects/obj_hitbox_back/obj_hitbox_back.yy",},},
     {"id":{"name":"obj_hitbox_default","path":"objects/obj_hitbox_default/obj_hitbox_default.yy",},},

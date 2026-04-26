@@ -23,6 +23,7 @@ estado_idle                     = new estado()
 estado_run                      = new estado()
 estado_habilidade_1             = new estado()
 estado_atack                    = new estado()
+estado_dash                     = new estado()
 
 //VARIAVEIS CONTROLE    
 right                   = noone
@@ -31,7 +32,17 @@ up                      = noone
 down                    = noone
 hab_1                   = noone
 atack                   = noone
+dash                    = noone
 
+
+//DASH
+can_dash                = true;
+dash_timer = 0;
+dash_duracao = 10;
+
+dash_speed = 0;
+dash_dir = 0;
+dash_cooldown = 0;
 
 ativa_ataque            = room_speed * 0.3;
 recarga_ataque          = 0
@@ -103,8 +114,6 @@ estado_run.roda = function()
     sprite_index = define_sprite(dir, spr_mago_run_side, spr_mago_run_front, spr_mago_run_back)
     
         
-    //velh = (right - left) * vel
-    //velv = (down - up) * vel
     
     if (right != left) {
     velh = (right - left) * vel;
@@ -120,17 +129,26 @@ estado_run.roda = function()
     }
     
     
-        
+    //VOLTANDO PARA IDLE    
     if velh == 0 and velv == 0
     {
         troca_estado(estado_idle)
     }
     
     
-    
+    //ATAQUE
     if atack and atacou == false
     {
         troca_estado(estado_atack)
+    }
+    
+    
+    
+    
+    //DASH
+    if dash && can_dash == true
+    {
+        troca_estado(estado_dash)
     }
 }
 #endregion
@@ -192,6 +210,70 @@ estado_atack.roda = function()
 #endregion
 
 
+#region Dash
+
+estado_dash.inicia = function()
+{
+    image_blend = c_aqua;
+    
+    dash_cooldown = 30; // meio segundo (ajuste)
+    can_dash = false;
+    
+    dash_timer = dash_duracao;
+    dash_speed = 5;
+    
+    // pega direção baseada no input atual
+    dash_dir = point_direction(0, 0, right - left, down - up);
+    
+    // fallback caso não esteja apertando nada
+    var h = right - left;
+    var v = down - up;
+
+       // trava diagonal
+    if (h != 0) {
+        v = 0;
+    }
+    else if (v != 0) {
+        h = 0;
+    }
+    
+       // fallback (se não tiver input)
+    if (h == 0 && v == 0) {
+        h = sign(velh);
+        v = sign(velv);
+    }
+
+dash_dir = point_direction(0, 0, h, v);
+}
+
+
+
+
+estado_dash.roda = function()
+{
+    // aplica velocidade
+    velh = lengthdir_x(dash_speed, dash_dir);
+    velv = lengthdir_y(dash_speed, dash_dir);
+    
+    // desaceleração suave
+    dash_speed *= 0.85;
+    
+    dash_timer--;
+    
+    with (instance_create_depth(x,y,depth+1,obj_efeitodash))
+		{
+			sprite_index = other.sprite_index
+			image_blend = make_colour_rgb(100, 100, 100)
+			image_alpha = 0.7;
+		}
+    
+    if (dash_timer <= 0)
+    {
+        troca_estado(estado_run);
+    }
+}
+
+#endregion
 
 
 #endregion
@@ -224,6 +306,7 @@ controle = function()
     down        = keyboard_check(ord("S"))
     atack       = mouse_check_button_pressed(mb_left)
     hab_1       = keyboard_check(ord("O"))
+    dash        = mouse_check_button_pressed(mb_right)
 }
 
 cria_buff = function(_nome, _valor)
