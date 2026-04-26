@@ -10,4 +10,5 @@ cor = c_red
 
 sinal = "+"
 
-fonte = fnt_infos_personagens
+fonte = fnt_dano
+

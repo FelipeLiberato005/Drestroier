@@ -1,1 +1,0 @@
-draw_text(x, y + _y, vida_atual)

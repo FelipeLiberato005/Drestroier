@@ -33,9 +33,13 @@ hab_1                   = noone
 atack                   = noone
 
 
-ativa_ataque            = room_speed * 1;
+ativa_ataque            = room_speed * 0.3;
 recarga_ataque          = 0
 atacou                  = false
+
+imune                   = false;
+tempo_imune             = room_speed * 2.5
+coldown_imune           = 0
 #endregion
 
 
@@ -98,18 +102,31 @@ estado_run.roda = function()
 
     sprite_index = define_sprite(dir, spr_mago_run_side, spr_mago_run_front, spr_mago_run_back)
     
-    velh = (right - left) * vel
-    velv = (down - up) * vel
+        
+    //velh = (right - left) * vel
+    //velv = (down - up) * vel
     
+    if (right != left) {
+    velh = (right - left) * vel;
+    velv = 0;
+    }
+    else if (down != up) {
+        velv = (down - up) * vel;
+        velh = 0;
+    }
+    else {
+        velh = 0;
+        velv = 0;
+    }
+    
+    
+        
     if velh == 0 and velv == 0
     {
         troca_estado(estado_idle)
     }
     
-    if hab_1
-    {
-        troca_estado(estado_habilidade_1)
-    }
+    
     
     if atack and atacou == false
     {
@@ -131,7 +148,7 @@ estado_atack.inicia = function()
     
     if sprite_index == spr_mago_atack_front
     {
-        instance_create_layer(x - 25, y - 10, "PLAYER" ,obj_hitbox) 
+        instance_create_layer(x - 25, y - 5, "PLAYER" ,obj_hitbox) 
         atacou = true;   
         
     }    
@@ -177,25 +194,6 @@ estado_atack.roda = function()
 
 
 
-
-
-#region HABILIDADE 1
-estado_habilidade_1.inicia = function()
-{
-    
-    image_blend = c_green
-}
-
-estado_habilidade_1.roda = function()
-{
-    //velh = 0
-    //velv = 0
-    
-    if !hab_1
-    {
-        troca_estado(estado_idle)
-    }
-}
 #endregion
 
 
@@ -305,15 +303,7 @@ if (len > 0)
 	h /= len;
 	v /= len;
 }
-//
-    //var mx = h * vel;
-    //var my = v * vel;
-//
-//// move no X primeiro
-//move_and_collide(mx, 0, lista_colisoes);
-//
-//// depois no Y
-//move_and_collide(0, my, lista_colisoes);
+
 move_and_collide(h * vel, v * vel, lista_colisoes, 12)
 }
 
@@ -327,6 +317,35 @@ coldown_ataque = function()
         {
             atacou = false
             recarga_ataque = 0;
+        }
+    }
+}
+
+perde_vida = function()
+{
+    var vida = instance_place(x + 5, y + 5, obj_enemy_test)
+    
+    if imune == false
+    {
+        if vida{
+        imune = true;
+        controla_vida.perde_vida(vida.dano_atual)
+    }
+    }
+    
+}
+
+fica_imune = function()
+{
+    if imune == true
+    {
+        image_alpha = 0.5
+        coldown_imune++
+        if coldown_imune >= tempo_imune
+        {
+            image_alpha = 1
+            imune = false
+            coldown_imune = 0
         }
     }
 }

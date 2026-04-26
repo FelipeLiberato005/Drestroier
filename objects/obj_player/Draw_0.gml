@@ -5,5 +5,5 @@ draw_set_font(fnt_infos_personagens)
 //draw_text(20, 20, "Projetil atual: "+global.projetil.nome)
 //draw_text(x, y + 30, "Var cria_instancia: "+string(criou_instancia))
 //draw_text(x, y + 40, "Var aplicou_buff: "+string(aplicou_buff))d
-draw_text(x, y - 40, atacou)
+//draw_text(x, y - 40, imune)
 draw_set_font(-1)

@@ -13,7 +13,17 @@ lista_hits                  = [obj_hitbox, obj_hitbox_back, obj_hitbox_side_left
 ia_idle                     = new estado()
 ia_persegue                 = new estado()
 
-vel = 0.1
+dir                         = 0
+
+vel = 0.2
+
+
+dano_base = 10
+dano_atual = dano_base
+
+max_vida                        = 100;
+vida                            = max_vida;
+controla_vida                   = new scr_vida(max_vida)
 
 #endregion
 
@@ -31,10 +41,13 @@ ia_idle.inicia = function()
     speed = 0
     vspeed = 0
     image_blend = c_white
+    
+    
 }
 
 ia_idle.roda = function()
 {
+    
     var distancia_player = point_distance(x, y, obj_player.x, obj_player.y)
     
     if distancia_player <= 60
@@ -53,16 +66,25 @@ ia_idle.roda = function()
 ia_persegue.inicia = function()
 {
     
+    
 }
 
 ia_persegue.roda = function()
 {
     
     
+    
+    
     vir_x = sign(obj_player.x + 5 - x) 
     vir_y = sign(obj_player.y + 5 - y) 
+    
     hspeed = vir_x * vel;
     vspeed = vir_y * vel; 
+   
+    
+    
+    
+    
     
     var distancia_player = point_distance(x, y, obj_player.x, obj_player.y)
     
@@ -101,6 +123,16 @@ imunidade = function()
             imune = false
             cronometro_imune = 0
         }
+    }
+}
+
+mostra_dano = function()
+{
+    var dano = place_meeting(x, y, lista_hits)
+    
+    if dano
+    {
+        instance_create_layer(x + 5, y - 20, obj_cont_dano)
     }
 }
 #endregion

@@ -6,7 +6,8 @@ controle()
 roda_estado()
 coldown_ataque()
 
-//roda_debug()
-//ativa_debug()
+fica_imune()
+perde_vida()
 
-//show_debug_message(atacou)
+
+

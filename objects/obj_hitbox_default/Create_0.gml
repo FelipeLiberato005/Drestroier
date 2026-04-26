@@ -13,8 +13,15 @@ if(bati > 0)
 				with(target){
 				    
                     if target.imune == false{
-                        vida_atual -= obj_player.dano_atual	
+                        target.controla_vida.perde_vida(obj_player.dano_atual)	
                         target.imune = true;
+                        
+                        var dano = instance_create_layer(target.x, target.y - 5, "PLAYER", obj_cont_dano)
+                        dano.cor = choose(make_colour_rgb(130, 0, 0),
+                                          make_colour_rgb(0, 100, 0),
+                                          make_colour_rgb(0, 0, 60))
+                        
+                        dano.txtCura = obj_player.dano_atual
                     }
                     		
 				}
