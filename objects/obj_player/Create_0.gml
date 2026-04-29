@@ -214,7 +214,7 @@ estado_atack.roda = function()
 
 estado_dash.inicia = function()
 {
-    image_blend = c_aqua;
+    //image_blend = c_aqua;
     
     dash_cooldown = 30; // meio segundo (ajuste)
     can_dash = false;

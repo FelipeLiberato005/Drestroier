@@ -69,9 +69,12 @@
     {"id":{"name":"obj_hitbox_side_right","path":"objects/obj_hitbox_side_right/obj_hitbox_side_right.yy",},},
     {"id":{"name":"obj_hitbox","path":"objects/obj_hitbox/obj_hitbox.yy",},},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},},
+    {"id":{"name":"obj_porta","path":"objects/obj_porta/obj_porta.yy",},},
+    {"id":{"name":"obj_transicao","path":"objects/obj_transicao/obj_transicao.yy",},},
     {"id":{"name":"obj_tutorial","path":"objects/obj_tutorial/obj_tutorial.yy",},},
     {"id":{"name":"obj_upgrade_chamas","path":"objects/obj_upgrade_chamas/obj_upgrade_chamas.yy",},},
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"id":{"name":"Room2","path":"rooms/Room2/Room2.yy",},},
     {"id":{"name":"scr_constantes_variaveis","path":"scripts/scr_constantes_variaveis/scr_constantes_variaveis.yy",},},
     {"id":{"name":"scr_construtorPlayer","path":"scripts/scr_construtorPlayer/scr_construtorPlayer.yy",},},
     {"id":{"name":"scr_escudo","path":"scripts/scr_escudo/scr_escudo.yy",},},
@@ -104,6 +107,7 @@
   "resourceVersion":"2.0",
   "RoomOrderNodes":[
     {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
+    {"roomId":{"name":"Room2","path":"rooms/Room2/Room2.yy",},},
   ],
   "templateType":"game",
   "TextureGroups":[

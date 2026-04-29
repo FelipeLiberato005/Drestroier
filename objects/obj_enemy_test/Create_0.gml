@@ -30,6 +30,7 @@ controla_vida                   = new scr_vida(max_vida)
 
 
 
+
 #region MAQUINA DE ESTADOS IA
 
 
@@ -136,6 +137,10 @@ mostra_dano = function()
     }
 }
 #endregion
+
+
+
+
 
 
 

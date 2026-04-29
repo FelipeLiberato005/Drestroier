@@ -18,3 +18,6 @@ function define_sprite(_dir = 0, _sprite_side, _sprite_front, _sprite_back)
     
     return _sprite;
 }
+
+
+global.inimigos_mortos = ds_map_create();

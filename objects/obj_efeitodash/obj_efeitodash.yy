@@ -9,8 +9,8 @@
   "name":"obj_efeitodash",
   "overriddenProperties":[],
   "parent":{
-    "name":"Objects",
-    "path":"folders/Objects.yy",
+    "name":"PLAYER-OBJECTS",
+    "path":"folders/Objects/PLAYER-OBJECTS.yy",
   },
   "parentObjectId":null,
   "persistent":false,

@@ -1,0 +1,1 @@
+enemy_id = room_get_name(room) + "_" + string(x) + "_" + string(y);
